@@ -1,6 +1,8 @@
-package org.ningning.codefu.crossword_gen;
+package org.ningning.crossword_gen;
 
 import static com.google.common.base.Preconditions.checkArgument;
+
+import org.ningning.crossword_gen.model.Board;
 
 public class Util {
 

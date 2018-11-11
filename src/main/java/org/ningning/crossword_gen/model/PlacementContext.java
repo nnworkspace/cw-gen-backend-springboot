@@ -1,4 +1,4 @@
-package org.ningning.codefu.crossword_gen;
+package org.ningning.crossword_gen.model;
 
 import java.util.List;
 

@@ -1,4 +1,5 @@
-# A Generator for Word Search Puzzle in Java
+# A Generator for Word Search Puzzle 
+## Spring boot backend implementation
 
 This program can generate word search puzzles. You can specify the board size, 
 density of the filling of the board, and the shortest length of words to be used.
@@ -7,7 +8,12 @@ Not completely implemented yet.....
 
 Usage:
 ```
-gradlew runApp
+gradlew bootRun
+```
+
+test:
+```
+http://localhost:8080/wordpuzzle?rows=12&cols=12&density=0.50f&shortestWordLength=6
 ```
 
 Output of a test with a board 20 * 20, density 0.75, shortest length of 5, looks like this:

@@ -1,9 +1,11 @@
-package org.ningning.codefu.crossword_gen;
+package org.ningning.crossword_gen;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -11,10 +13,17 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.ningning.crossword_gen.model.Board;
+import org.ningning.crossword_gen.model.PlacementContext;
+import org.ningning.crossword_gen.model.PlacementSpec;
+import org.ningning.crossword_gen.model.PuzzleAndSolution;
+import org.ningning.crossword_gen.model.Solution;
 
 public class CrosswordGenerator {
 
   private final static Logger LOG = Logger.getLogger(CrosswordGenerator.class.getName());
+
+  private static final String DICT_PATH = "src/main/resources/german/german.dic";
 
   private List<String> dict;
   private List<String> usedWords = new ArrayList<>();
@@ -34,6 +43,11 @@ public class CrosswordGenerator {
 
   public CrosswordGenerator(List<String> dict, Board board) {
     this.dict = dict;
+    this.init(board);
+  }
+
+  public CrosswordGenerator(Board board) {
+    this.loadDict(Paths.get(DICT_PATH));
     this.init(board);
   }
 
@@ -94,12 +108,15 @@ public class CrosswordGenerator {
       }
 
       // build the puzzleAndSolution object
-      Map<String, PlacementSpec> solutionMap = new TreeMap<>();
-      this.placementHistory.forEach( placementContext -> {
-        solutionMap.put(placementContext.getWord(), placementContext.getPlacementSpec());
-      });
+      List<Solution> solutionList;
 
-      this.puzzleAndSolution = new PuzzleAndSolution(this.board.getCharGrid(), solutionMap);
+      solutionList = this.placementHistory.stream().map(placementContext -> {
+        PlacementSpec plSpec = placementContext.getPlacementSpec();
+        return new Solution(placementContext.getWord(), plSpec.getStartPosition(),
+            plSpec.getOrientation());
+      }).sorted(Comparator.comparing(Solution::getWord)).collect(Collectors.toList());
+
+      this.puzzleAndSolution = new PuzzleAndSolution(this.board.getCharGrid(), solutionList);
     }
   }
 

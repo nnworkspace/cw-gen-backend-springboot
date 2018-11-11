@@ -1,32 +1,33 @@
-package org.ningning.codefu.crossword_gen;
+package org.ningning.crossword_gen.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class PuzzleAndSolution {
 
   private char[][] puzzle;
-  private Map<String, PlacementSpec> solution;
+  private List<Solution> solutions;
 
   public PuzzleAndSolution(char[][] puzzle,
-      Map<String, PlacementSpec> solution) {
+      List<Solution> solutions) {
     this.puzzle = puzzle;
-    this.solution = solution;
+    this.solutions = solutions;
   }
 
   public char[][] getPuzzle() {
     return puzzle;
   }
 
-  public Map<String, PlacementSpec> getSolution() {
-    return solution;
+  public List<Solution> getSolutions() {
+    return solutions;
   }
 
   @Override
   public String toString() {
     return "PuzzleAndSolution{" +
         "puzzle=" + Arrays.toString(puzzle) +
-        ", solution=" + solution +
+        ", solutions=" + solutions +
         '}';
   }
 }

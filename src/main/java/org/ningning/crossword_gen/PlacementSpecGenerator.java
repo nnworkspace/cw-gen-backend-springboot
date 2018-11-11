@@ -1,4 +1,4 @@
-package org.ningning.codefu.crossword_gen;
+package org.ningning.crossword_gen;
 
 import com.google.common.base.Preconditions;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import java.util.Random;
 import java.util.logging.Logger;
 import org.apache.commons.math3.distribution.EnumeratedDistribution;
 import org.apache.commons.math3.util.Pair;
+import org.ningning.crossword_gen.model.Board;
+import org.ningning.crossword_gen.model.PlacementSpec;
+import org.ningning.crossword_gen.model.WordOrientation;
 
 public class PlacementSpecGenerator {
 
