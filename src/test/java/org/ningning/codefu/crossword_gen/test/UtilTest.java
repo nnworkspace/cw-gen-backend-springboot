@@ -2,8 +2,8 @@ package org.ningning.codefu.crossword_gen.test;
 
 import org.junit.jupiter.api.Test;
 
-import org.ningning.codefu.crossword_gen.Board;
-import org.ningning.codefu.crossword_gen.Util;
+import org.ningning.crossword_gen.model.Board;
+import org.ningning.crossword_gen.Util;
 
 
 public class UtilTest {

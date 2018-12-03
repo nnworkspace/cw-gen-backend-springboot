@@ -3,8 +3,8 @@ package org.ningning.codefu.crossword_gen.test;
 import com.google.common.base.Stopwatch;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.ningning.codefu.crossword_gen.Board;
-import org.ningning.codefu.crossword_gen.CrosswordGenerator;
+import org.ningning.crossword_gen.model.Board;
+import org.ningning.crossword_gen.CrosswordGenerator;
 
 import java.io.IOException;
 import java.nio.file.Files;
