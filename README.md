@@ -66,3 +66,11 @@ The German dictionary is downloaded from:
 [https://sourceforge.net/projects/germandict/](https://sourceforge.net/projects/germandict/)
 
 You can use other dictionary though. Each line in your dictionary file must contain a single word
+
+## Containerization
+
+Build: `docker build -t nnworkspace/crossword-spring:latest -t nnworkspace/crossword-spring:v0.0.1 .`
+
+Run: `docker run -p 8080:8080 nnworkspace/crossword-spring`
+
+Test: `http://localhost:8080/wordpuzzle?rows=12&cols=12&density=0.50f&shortestWordLength=6`
