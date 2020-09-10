@@ -10,3 +10,4 @@ git {
 }
 
 include 'crossword-gen-api'
+project(':crossword-gen-api').setProjectDir(file("lib/crossword-gen-api"))
