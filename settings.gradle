@@ -1,2 +1,12 @@
-rootProject.name = 'crossword-gen-backend-springboot'
+plugins {
+    id 'com.alexvasilkov.git-dependencies' version '2.0.1'
+}
 
+rootProject.name = 'crossword-gen-backend-springboot'
+git {
+    fetch 'https://github.com/nnworkspace/crossword-gen-api.git', {
+        dir "$rootDir/libs/crossword-gen-api"
+    }
+}
+
+include 'crossword-gen-api'
