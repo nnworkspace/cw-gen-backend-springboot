@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.3.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id "org.openapi.generator" version "4.3.1"
     id 'java'
     id 'idea'
 }
@@ -31,6 +32,42 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
+println '################## project path: ################'
+println  "Root project:   ${project.rootProject}"
+println  "  rootDir:      ${project.rootDir}"
+println  "  projectDir:   ${project.projectDir}"
+
+def apiSrcPath = "${project.projectDir}/libs/crossword-gen-api/src/main/api".toString()
+// def apiSrcPath = "../crossword-gen-api/src/main/api".toString()
+def destPath = "${project.buildDir}".toString()
+def apiDoc = 'crossword-gen-api.yaml'
+def inputFileUri = "$apiSrcPath/$apiDoc".toString()
+
+openApiValidate {
+    inputSpec = inputFileUri
+}
+
+// call this task to generate Spring Server stub
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = inputFileUri
+    outputDir = "$destPath/server-spring-boot".toString()
+    apiPackage = "${project.group}.rest".toString()
+    modelPackage = "${project.group}.model".toString()
+    configOptions = [ dateLibrary: "java8" ]
+}
+
+// call this to generate all
+task codegen(dependsOn: ['openApiValidate',
+                         'openApiGenerate'
+//                         'buildSpringServerStub',
+//                         'buildAngularClient'
+])
+
+
+
+// ################### below was copied from the crossword-gen core project, not useful here
+// ########################## but I still keep it know how to test ....
 //test {
 //    useJUnitPlatform()
 //}
